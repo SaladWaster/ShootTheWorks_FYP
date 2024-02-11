@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Enemies
+  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background Clouds
+    uniqueID: 4076175321
+    locked: 0
+  - name: Background
+    uniqueID: 1780714167
+    locked: 0
+  - name: Background Mountains
+    uniqueID: 4255004539
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Aesthetics over Base
+    uniqueID: 2455726171
+    locked: 0
