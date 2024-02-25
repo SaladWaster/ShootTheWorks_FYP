@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour
 
     public float attackRange = 0.5f;
 
-    public LayerMask enemyLayers;
+    // public LayerMask enemyLayers;
 
     public float meleeDamage = 50;
 
@@ -62,14 +62,27 @@ public class PlayerCombat : MonoBehaviour
 
         print("Combat Attack Check!");
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
 
         foreach(Collider2D enemy in hitEnemies)
         {
+
+            EnemyStats badGuy = enemy.GetComponent<EnemyStats>();
+            Breakable breakObject = enemy.GetComponent<Breakable>();
+
+            if(badGuy != null)
+            {
+                badGuy.TakeDmg(meleeDamage);
+            }
+            else if(breakObject != null)
+            {
+                breakObject.TakeDmg(meleeDamage);
+            }
+
             Debug.Log("We hit" + enemy.name);
 
-            enemy.GetComponent<EnemyStats>().TakeDmg(meleeDamage);
+            //enemy.GetComponent<EnemyStats>().TakeDmg(meleeDamage);
         }
     }
 

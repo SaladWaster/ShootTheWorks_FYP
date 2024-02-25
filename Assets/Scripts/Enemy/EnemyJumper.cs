@@ -18,7 +18,7 @@ public class EnemyJumper : MonoBehaviour
 
     void Awake()
     {
-        // Check the player object for a component of type Rigidbody2D
+        // Check the object for a component of type Rigidbody2D
         // This script takes the Rigidbody2D found and stores it inside the body vairable
         // One of most widely used methods to make references, works with colliders and more
         rb = GetComponent<Rigidbody2D>();
@@ -49,7 +49,27 @@ public class EnemyJumper : MonoBehaviour
         grounded = false;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+        
+    //     // Checks if object collided with is the ground
+    //     if (collision.gameObject.tag == "Ground")
+    //     {
+    //         grounded = true;
+    //     }
+
+    //     if(collision.gameObject.CompareTag("Player"))
+    //     {
+    //         // Debug.Log("Collision test");
+    //         PlayerStats playerChar = collision.gameObject.GetComponent<PlayerStats>();
+    //         playerChar.TakeDmg(contactDamage); // Use current damage, as we may add damage modifiers later, rather than weapondata.damage
+    //     }
+
+        
+    // }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         
         // Checks if object collided with is the ground
