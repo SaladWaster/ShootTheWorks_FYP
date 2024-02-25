@@ -95,4 +95,9 @@ public class PlayerStats : MonoBehaviour
 
         transform.position = spawnPoint.position;
     }
+
+    public void SetSpawnPoint(Transform newSpawnPos)
+    {
+        spawnPoint = newSpawnPos;
+    }
 }

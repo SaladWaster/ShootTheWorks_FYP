@@ -49,7 +49,19 @@ public class EnemyFlyer : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+        
+    //     if(collision.gameObject.CompareTag("Player"))
+    //     {
+    //         PlayerStats playerChar = collision.gameObject.GetComponent<PlayerStats>();
+    //         playerChar.TakeDmg(contactDamage); // Use current damage, as we may add damage modifiers later, rather than weapondata.damage
+    //     }
+
+        
+    // }
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         
         if(collision.gameObject.CompareTag("Player"))
@@ -60,5 +72,6 @@ public class EnemyFlyer : MonoBehaviour
 
         
     }
+
 
 }

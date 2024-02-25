@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 176038529}
   - component: {fileID: 5875831862462145004}
   - component: {fileID: 455648815}
+  - component: {fileID: 1526495196}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Enemy
@@ -171,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  flashEffect: {fileID: 1526495196}
 --- !u!95 &176038529
 Animator:
   serializedVersion: 5
@@ -229,3 +231,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.21999998, y: 0.28}
   m_Direction: 0
+--- !u!114 &1526495196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752218603340627430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9341e9e558b804dacc2cf0ed6d0fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: cf0f71fd214faa048b0949ff9f0f8414, type: 2}
+  duration: 0.15
