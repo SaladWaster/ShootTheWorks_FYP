@@ -22,6 +22,8 @@ public class EnemyMovement : MonoBehaviour
 
     public bool atkPlayer = false;
 
+    public float atkRange;
+
 
     /// <summary>
     /// POTENTIAL IMPROVEMENTS
@@ -54,7 +56,9 @@ public class EnemyMovement : MonoBehaviour
         var x1 = player.transform.position.x;
         //enemySR.flipX = x0 > x1;
 
+        float distance = Vector2.Distance(transform.position, player.transform.position);
 
+        
         if(x0 > x1)
         {
             // if the variable isn't empty (ref to our SpriteRenderer)
@@ -84,8 +88,8 @@ public class EnemyMovement : MonoBehaviour
 
 
         
-
-        if( Mathf.Abs(x0 - x1) <= 0.5f)
+        // Mathf.Abs(x0 - x1) <= 0.5f
+        if(distance <= atkRange)
         {
             // Don't move, similar to metal slug soldiers
             Debug.Log("Enemy should attack here~!");
@@ -96,7 +100,7 @@ public class EnemyMovement : MonoBehaviour
 
             atkPlayer = true;
         }
-        else if(Mathf.Abs(x0 - x1) >= 2.0f )
+        else if(distance >= 2.0f )
         {
             // Don't move, similar to metal slug soldiers
             Debug.Log("Enemy stop here!");
@@ -112,6 +116,10 @@ public class EnemyMovement : MonoBehaviour
 
             animatorE.SetBool("IsMoving", true);
         }
+
+        // transform.position = Vector2.MoveTowards(transform.position, target, step);
+
+        // animatorE.SetBool("IsMoving", true);
         
         // transform.position = Vector2.MoveTowards(transform.position, target, step);
 

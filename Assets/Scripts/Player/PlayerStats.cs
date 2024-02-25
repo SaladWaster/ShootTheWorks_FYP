@@ -11,6 +11,20 @@ public class PlayerStats : MonoBehaviour
 
         public Image healthBar;
 
+        public float lives = 3;
+
+        // DMG Flash
+        [SerializeField] 
+        private DamageFlash flashEffect;
+
+        // Max fall distance before respawn
+        [SerializeField]
+        public float yLimit;
+
+        // Respawn position
+        [SerializeField]
+        private Transform spawnPoint;
+
     // public GameObject deathEffect;
 
 
@@ -26,6 +40,15 @@ public class PlayerStats : MonoBehaviour
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
     }
 
+    void FixedUpdate()
+    {
+        // Checks if player has fallen off the map
+        if(transform.position.y < yLimit)
+        {
+            Die();
+        }
+    }
+
 
     // Notice how we assign public to the TakeDmg function
     // This is only used when we want to call this function
@@ -34,6 +57,8 @@ public class PlayerStats : MonoBehaviour
     public void TakeDmg(float dmg)
     {
         health -= dmg;
+
+        flashEffect.Flash();
 
         if(health <= 0)
         {
@@ -46,6 +71,28 @@ public class PlayerStats : MonoBehaviour
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         //Destroy(gameObject);
 
-        Debug.Log("Player is ded");
+        lives--;
+
+        if(lives > 0)
+        {
+            Respawn();
+
+            Debug.Log("Respawning");
+        }
+        else
+        {
+            Destroy(gameObject);
+            Debug.Log("Player is ded");
+        }
+
+        
+    }
+
+    void Respawn()
+    {
+        
+        health = maxHealth;
+
+        transform.position = spawnPoint.position;
     }
 }

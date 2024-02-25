@@ -19,6 +19,11 @@ public class reSpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Respawn();
+    }
+
+    void Respawn()
+    {
         if(transform.position.y < yLimit)
         {
             transform.position = spawnPoint.position;
