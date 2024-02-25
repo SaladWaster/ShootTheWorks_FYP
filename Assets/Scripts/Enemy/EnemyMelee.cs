@@ -15,8 +15,11 @@ public class EnemyMelee : MonoBehaviour
     public float meleeDamage = 50;
 
     // No. of times player can attack (per second)
-    public float attackRate = 1f;
-    float nextAttackTime = 0f;
+    //public float attackRate = 1f;
+    //float nextAttackTime = 0f;
+
+    private float timer;
+    public float meleeCD;
 
     public EnemyMovement eMove;
 
@@ -49,14 +52,22 @@ public class EnemyMelee : MonoBehaviour
 
         if(eMove.atkPlayer)
         {
-            // Time.time keeps track of our current time
-            if(Time.time >= nextAttackTime)
-            {
-                    Attack();
+            // // Time.time keeps track of our current time
+            // if(Time.time >= nextAttackTime)
+            // {
+            //         Attack();
 
-                    // Modify attackRate in inspector to decide how many times player can attack per second
-                    nextAttackTime = Time.time + 1f / attackRate;
+            //         // Modify attackRate in inspector to decide how many times player can attack per second
+            //         nextAttackTime = Time.time + 1f / attackRate;
         
+            // }
+
+            timer += Time.deltaTime;
+
+            if(timer > meleeCD)
+            {
+                timer = 0;
+                Attack();
             }
         }
 

@@ -14,6 +14,8 @@ public class EnemyJumper : MonoBehaviour
 
     bool grounded;
 
+    public float contactDamage = 1000;
+
     void Awake()
     {
         // Check the player object for a component of type Rigidbody2D
@@ -49,10 +51,20 @@ public class EnemyJumper : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        
         // Checks if object collided with is the ground
         if (collision.gameObject.tag == "Ground")
         {
             grounded = true;
         }
+
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            // Debug.Log("Collision test");
+            PlayerStats playerChar = collision.gameObject.GetComponent<PlayerStats>();
+            playerChar.TakeDmg(contactDamage); // Use current damage, as we may add damage modifiers later, rather than weapondata.damage
+        }
+
+        
     }
 }

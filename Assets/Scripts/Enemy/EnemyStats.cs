@@ -7,6 +7,9 @@ public class EnemyStats : MonoBehaviour
 
     public float health = 100;
 
+    // DMG Flash
+    [SerializeField] private DamageFlash flashEffect;
+
     // public GameObject deathEffect;
 
 
@@ -17,6 +20,8 @@ public class EnemyStats : MonoBehaviour
     public void TakeDmg(float dmg)
     {
         health -= dmg;
+
+        flashEffect.Flash();
 
         if(health <= 0)
         {
