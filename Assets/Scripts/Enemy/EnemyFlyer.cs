@@ -36,10 +36,13 @@ public class EnemyFlyer : MonoBehaviour
         if (Vector2.Distance(transform.position, points[i].position) <0.002f)
         {
             i++;    // increase index
-            // if(i == points.Length)
-            // {
-            //     i = 0; // Resets index if platform reaches last point
-            // }
+
+            // Destroy the enemy if it has not yet been defeated by player at end of pathing
+            if(i == points.Length)
+            {
+                i = 0;
+                Destroy(gameObject);
+            }
         }
 
         // Move the platform to point position with index "i"
@@ -49,17 +52,7 @@ public class EnemyFlyer : MonoBehaviour
         
     }
 
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-        
-    //     if(collision.gameObject.CompareTag("Player"))
-    //     {
-    //         PlayerStats playerChar = collision.gameObject.GetComponent<PlayerStats>();
-    //         playerChar.TakeDmg(contactDamage); // Use current damage, as we may add damage modifiers later, rather than weapondata.damage
-    //     }
-
-        
-    // }
+    
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -72,6 +65,8 @@ public class EnemyFlyer : MonoBehaviour
 
         
     }
+
+
 
 
 }

@@ -27,9 +27,19 @@ public class Timer : MonoBehaviour
             {
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
+
+                
             }
         }
+
+        // if (Time.timeScale == 0f)
+        // {
+        //     TimeScore(Mathf.FloorToInt(timeRemaining));
+        // }
+        
     }
+
+
 
     void DisplayTime (float timeToDisplay)
     {
@@ -37,5 +47,11 @@ public class Timer : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void TimeScore(int timeLeft)
+    {
+        PointCounter.instance.IncreaseTimePoints(timeLeft);
+        Debug.Log("Time left: " + timeLeft);
     }
 }

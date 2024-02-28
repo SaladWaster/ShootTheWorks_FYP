@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         Run();
 
         // Only triggers jump if player is considered grounded
-        if(Input.GetKey(KeyCode.Space) && grounded)
+        if(Input.GetKey(KeyCode.UpArrow) && grounded)
         {
             Jump();
         }
