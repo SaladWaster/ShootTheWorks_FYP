@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2315081007951993219}
   - component: {fileID: 2315081007951993216}
   - component: {fileID: 2315081007951993218}
+  - component: {fileID: 2315081007389650955}
+  - component: {fileID: 2315081007389650963}
   m_Layer: 7
   m_Name: Witch
   m_TagString: Enemy
@@ -106,7 +108,7 @@ MonoBehaviour:
   firePoint: {fileID: 2315081008318712921}
   bulletPrefab: {fileID: 8999007175407683923, guid: 79dd18bf01b671c4e9ea8342700c6e6d, type: 3}
   eMove: {fileID: 2315081007951993217}
-  shootCD: 0.8
+  shootCD: 1.2
 --- !u!114 &2315081007951993217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,8 +158,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.27, y: 0.36}
+  m_Offset: {x: 0, y: 0.009123132}
+  m_Size: {x: 0.2, y: 0.34175375}
   m_Direction: 0
 --- !u!95 &2315081007951993218
 Animator:
@@ -180,6 +182,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2315081007389650955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2315081007951993229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e253d74edc0f0e949b87824ed67f0c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  flashEffect: {fileID: 2315081007389650963}
+--- !u!114 &2315081007389650963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2315081007951993229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9341e9e558b804dacc2cf0ed6d0fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: cf0f71fd214faa048b0949ff9f0f8414, type: 2}
+  duration: 0.15
 --- !u!1 &2315081008318712902
 GameObject:
   m_ObjectHideFlags: 0

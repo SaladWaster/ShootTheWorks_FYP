@@ -13,6 +13,17 @@ public class EnemyStats : MonoBehaviour
     // public GameObject deathEffect;
 
 
+    void FixedUpdate()
+    {
+        // Checks if Enemy has fallen off the map
+        // We destroy immediately, do not give points to player
+        if(transform.position.y < -1)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     // Notice how we assign public to the TakeDmg function
     // This is only used when we want to call this function
     // In another script
@@ -40,7 +51,7 @@ public class EnemyStats : MonoBehaviour
         //this.enabled = false;
         // GetComponent<Collider2D>().enabled = false;
         //GetComponent<EnemyMovement>().enabled = false;
-
+        PointCounter.instance.IncreasePoints(1);
 
         // Destroy on death
         Destroy(gameObject);

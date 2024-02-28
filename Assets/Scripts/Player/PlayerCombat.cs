@@ -19,24 +19,6 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0f;
 
-    /// <summary>
-    /// POTENTIAL IMPROVEMENTS
-    /// 
-    /// KEY: CAN REUSE THIS ATTACK RATE FOR PROJECTILE ATTACKS
-    /// 
-    /// MAYBE CHANGE SHAPE TO BOX COLLIDERS LIKE OTHER PROJECTILE ATTACKS?
-    /// 
-    /// </summary>
-  
-
-
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -45,7 +27,7 @@ public class PlayerCombat : MonoBehaviour
         // Time.time keeps track of our current time
         if(Time.time >= nextAttackTime)
         {
-            if(Input.GetKey(KeyCode.I))
+            if(Input.GetKey(KeyCode.Z))
             {
                 Attack();
 
@@ -61,6 +43,8 @@ public class PlayerCombat : MonoBehaviour
         animator.SetTrigger("meleeAttack");
 
         print("Combat Attack Check!");
+
+        FindObjectOfType<AudioManager>().Play("Melee");
 
         //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
@@ -83,6 +67,8 @@ public class PlayerCombat : MonoBehaviour
             Debug.Log("We hit" + enemy.name);
 
             //enemy.GetComponent<EnemyStats>().TakeDmg(meleeDamage);
+
+
         }
     }
 

@@ -10,9 +10,7 @@ public class PickUP : MonoBehaviour
     // PlayerStats player;
 
     Transform player;
-    protected bool hasBeenCollected = false;
-
-    public bool isAttracted = false;
+    //protected bool hasBeenCollected = false;
 
 
 
@@ -31,39 +29,24 @@ public class PickUP : MonoBehaviour
         // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
-    void FixedUpdate()
-    {
-        // if(isAttracted)
-        // {
-            
-        //     // // Vector 2d that points to player direction from item position and normalize it
-        //     Vector2 targetDirection = (player.transform.position - transform.position).normalized;
-            
-        //     rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * 10f;
-        // }
 
-    
-    }
-
-    public void SetTarget(Vector3 position)
-    {
-        player.transform.position = position;
-        isAttracted = true;
-    }
 
     public virtual void Collect()
     {
         // audioManager.PlaySound(audioManager.pickUp);
-        hasBeenCollected = true;
+        //hasBeenCollected = true;
+
+        PointCounter.instance.IncreasePoints(5);
         print("Item Picked!");
     }
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        // If the exp gem collides with a hitbox under a "Player"
+        // If the drop collides with a hitbox under a "Player"
         if(col.CompareTag("Player"))
         {
             Collect();
+            FindObjectOfType<AudioManager>().Play("PickUp");
             // Destroy on pick-up to prevent multiple pick-ups
             Destroy(gameObject);
             

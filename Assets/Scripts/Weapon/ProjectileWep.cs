@@ -28,7 +28,7 @@ public class ProjectileWep : MonoBehaviour
     void Update()
     {
         //if(Input.GetButtonDown("Fire1"))
-        if(currentAmmo > 0 && !coolingDown && Input.GetKey(KeyCode.P))
+        if(currentAmmo > 0 && !coolingDown && Input.GetKey(KeyCode.X))
         {
             Shoot();
             coolingDown = true;
@@ -59,6 +59,8 @@ public class ProjectileWep : MonoBehaviour
 
     void Shoot()
     {
+        FindObjectOfType<AudioManager>().Play("Shoot");
+
         currentAmmo--;
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         

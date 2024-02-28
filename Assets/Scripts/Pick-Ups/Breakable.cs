@@ -6,9 +6,6 @@ public class Breakable : MonoBehaviour
 {
     public float health = 50;
 
-    // public GameObject deathEffect;
-
-
     // Notice how we assign public to the TakeDmg function
     // This is only used when we want to call this function
     // In another script
@@ -25,7 +22,7 @@ public class Breakable : MonoBehaviour
 
     void Die()
     {
-        //Instantiate(deathEffect, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }

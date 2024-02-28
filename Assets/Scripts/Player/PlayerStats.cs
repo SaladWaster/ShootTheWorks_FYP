@@ -25,6 +25,17 @@ public class PlayerStats : MonoBehaviour
         [SerializeField]
         private Transform spawnPoint;
 
+        [SerializeField]
+        GameObject endScreen;
+
+        // SHADOW I-FRAMES????!!!
+        [Header("I-Frames")]
+        public float invincibilityDuration;
+        float invincibilityTimer;
+        bool isInvincible;
+
+
+
     // public GameObject deathEffect;
 
 
@@ -38,15 +49,29 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-    }
 
-    void FixedUpdate()
-    {
+        // Repeatedly check invincibility timer
+        if(invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+        }
+        // We use else if to double check if the player is invincible when timer hits 0
+        // Before we set isInvincible back to false
+        else if (isInvincible)
+        {
+            isInvincible = false;
+        }
+
         // Checks if player has fallen off the map
         if(transform.position.y < yLimit)
         {
             Die();
         }
+    }
+
+    void FixedUpdate()
+    {
+        
     }
 
 
@@ -56,14 +81,25 @@ public class PlayerStats : MonoBehaviour
     // In this case, this function will be called from the Bullet script
     public void TakeDmg(float dmg)
     {
-        health -= dmg;
 
-        flashEffect.Flash();
 
-        if(health <= 0)
+        // If player is not invincible, take damage and gain i-frames
+        if(!isInvincible)
         {
-            Die();
+
+            health -= dmg;
+
+            invincibilityTimer = invincibilityDuration;
+            isInvincible = true;
+
+            flashEffect.Flash();
+
+            if(health <= 0)
+            {
+                Die();
+            }
         }
+        
     }
 
     void Die()
@@ -72,6 +108,8 @@ public class PlayerStats : MonoBehaviour
         //Destroy(gameObject);
 
         lives--;
+
+        LifeCounter.instance.DecreaseLives(1);
 
         if(lives > 0)
         {
@@ -83,6 +121,8 @@ public class PlayerStats : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("Player is ded");
+
+            GameOver();
         }
 
         
@@ -99,5 +139,14 @@ public class PlayerStats : MonoBehaviour
     public void SetSpawnPoint(Transform newSpawnPos)
     {
         spawnPoint = newSpawnPos;
+    }
+
+    void GameOver()
+    {
+        FindObjectOfType<AudioManager>().StopPlaying("Theme");
+        FindObjectOfType<AudioManager>().Play("GameOver");
+        Time.timeScale = 0f; // <- It will stop your game time. use it if you need it.
+        endScreen.SetActive(true); // <- Show GameOver Panel
+
     }
 }

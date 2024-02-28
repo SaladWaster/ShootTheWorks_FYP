@@ -20,12 +20,12 @@ public class TimeSlow : MonoBehaviour
     
     void Update()
     {
-      if (Input.GetKeyDown(KeyCode.O))
+      if (Input.GetKeyDown(KeyCode.C))
       {
          StartSlowMotion();
       }
 
-      if(Input.GetKeyUp(KeyCode.O))
+      if(Input.GetKeyUp(KeyCode.C))
       {
          StopSlowMotion();
       }

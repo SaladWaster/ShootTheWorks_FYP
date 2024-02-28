@@ -41,7 +41,8 @@ public class EnemyBullet : MonoBehaviour
         // ONLY ADD THIS LATER, IT'S JUST A HIT EFFECT
         // Instantiate(impactEffect, transform.position, transform.rotation);
         
-        Debug.Log(hitInfo.name);
+        //Debug.Log(hitInfo.name);
+        Debug.Log($"Enemy Projectile colided with: {hitInfo.name}");
         Destroy(gameObject);
     }
 }
