@@ -9,51 +9,68 @@ public class ProjectileWep : MonoBehaviour
     public GameObject bulletPrefab;
 
     public float cooldownDuration;
-    public float currentCD;
+    // public float currentCD;
 
-    public bool coolingDown = false;
+    // public bool coolingDown = false;
 
     public int maxAmmo = 10;
     private int currentAmmo;
+
+    // No. of times player can attack (per second)
+    public float attackRate = 1f;
+    float nextAttackTime = 0f;
+
     // public float reloadTime = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
         currentAmmo = maxAmmo;
-        currentCD = cooldownDuration;
+        // currentCD = cooldownDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
         //if(Input.GetButtonDown("Fire1"))
-        if(currentAmmo > 0 && !coolingDown && Input.GetKey(KeyCode.X))
-        {
-            Shoot();
-            coolingDown = true;
-        }
-        else if (currentAmmo <= 0)
-        {
-            Debug.Log("Out of Ammo!");
-            // Reload();
+        // if(currentAmmo > 0 && !coolingDown && Input.GetKey(KeyCode.X))
+        // {
+        //     Shoot();
+        //     coolingDown = true;
+        // }
 
-            // We will implement a reload conditional if players pick up a new wep
-        }
-
-        if (coolingDown)
+        // Time.time keeps track of our current time
+        if(Time.time >= nextAttackTime)
         {
-            if (currentCD> 0)
+            if(Input.GetKey(KeyCode.X))
             {
-                currentCD -= Time.deltaTime;
+                Shoot();
+
+                // Modify attackRate in inspector to decide how many times player can attack per second
+                nextAttackTime = Time.time + 1f / attackRate;
             }
-            else
-            {
-                coolingDown = false;   
-                currentCD = cooldownDuration;           
-            }
+        }
+        // else if (currentAmmo <= 0)
+        // {
+        //     Debug.Log("Out of Ammo!");
+        //     // Reload();
+
+        //     // We will implement a reload conditional if players pick up a new wep
+        // }
+
+        // if (coolingDown)
+        // {
+        //     if (currentCD> 0)
+        //     {
+        //         currentCD -= Time.deltaTime;
+        //     }
+        //     else
+        //     {
+        //         coolingDown = false;   
+        //         currentCD = cooldownDuration;           
+        //     }
             
-        }
+        // }
 
     }
 

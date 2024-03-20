@@ -41262,7 +41262,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c4262debd189336448ea8b0e9219d6c0, type: 3}
     volume: 0.2
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: GameOver
     clip: {fileID: 8300000, guid: c99e959a9442bd544ad14c7dbe9f1ce9, type: 3}
