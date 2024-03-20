@@ -13,7 +13,7 @@ public class EnemyStats : MonoBehaviour
     // public GameObject deathEffect;
 
 
-    void FixedUpdate()
+    void Update()
     {
         // Checks if Enemy has fallen off the map
         // We destroy immediately, do not give points to player
